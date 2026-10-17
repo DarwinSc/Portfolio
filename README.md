@@ -5,6 +5,7 @@ Sitio personal de Darwin Sierra, desarrollador frontend en Buenos Aires.
 Hecho con **Next.js**, **TypeScript**, **Tailwind CSS** y **Motion**. Estética de estudio de diseño: blanco y negro, grilla de 12 columnas visible y una sola tipografía (Bricolage Grotesque) a escalas muy distintas.
 
 - Nombre gigante que aparece letra por letra al cargar.
+- Destellos suaves de colores que recorren las líneas de la grilla.
 - Cinta animada con el stack, cada tecnología con el color de su logo (o una foto en blanco y negro que toma color al pasar el mouse, si se completa `photo` en `profile.ts`).
 - Botones magnéticos que siguen levemente al puntero.
 - Recorrido como índice: los bordes de cada fila resplandecen con un color al azar de la paleta de tecnologías al pasar el mouse.

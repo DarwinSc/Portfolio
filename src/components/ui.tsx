@@ -8,13 +8,44 @@ export function Container({ children, className = "" }: { children: React.ReactN
   return <div className={`mx-auto w-full max-w-[1280px] px-5 md:px-12 ${className}`}>{children}</div>;
 }
 
+// Destellos que recorren algunas líneas de la grilla. Valores fijos (no
+// aleatorios) para que el servidor y el navegador rendericen lo mismo.
+// col: columna, side: borde izquierdo o derecho, dur y delay en segundos.
+const glints = [
+  { col: 0, side: "left", color: "#61dafb", dur: 9, delay: 0 },
+  { col: 2, side: "right", color: "#f7df1e", dur: 11, delay: 3.5 },
+  { col: 3, side: "left", color: "#3ecf8e", dur: 10, delay: 6 },
+  { col: 5, side: "right", color: "#cc6699", dur: 12, delay: 1.5 },
+  { col: 7, side: "left", color: "#9a6fe0", dur: 9.5, delay: 7.5 },
+  { col: 8, side: "right", color: "#ff9900", dur: 11.5, delay: 4.5 },
+  { col: 10, side: "left", color: "#2f8fff", dur: 10.5, delay: 9 },
+  { col: 11, side: "right", color: "#f24e1e", dur: 12.5, delay: 2.5 },
+] as const;
+
 // Grilla de 12 columnas visible de fondo, como en una mesa de diseño.
 export function GridLines() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       <Container className="grid h-full grid-cols-4 gap-5 md:grid-cols-12">
         {Array.from({ length: 12 }, (_, i) => (
-          <i key={i} className={`border-x border-line ${i >= 4 ? "hidden md:block" : ""}`} />
+          <i key={i} className={`relative border-x border-line ${i >= 4 ? "hidden md:block" : ""}`}>
+            {glints
+              .filter((g) => g.col === i)
+              .map((g) => (
+                <span
+                  key={g.side}
+                  className="glint"
+                  style={
+                    {
+                      "--glint": g.color,
+                      [g.side]: "-1px",
+                      animationDuration: `${g.dur}s`,
+                      animationDelay: `${g.delay}s`,
+                    } as React.CSSProperties
+                  }
+                />
+              ))}
+          </i>
         ))}
       </Container>
     </div>
