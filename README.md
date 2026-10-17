@@ -2,13 +2,12 @@
 
 Sitio personal de Darwin Sierra, desarrollador frontend en Buenos Aires.
 
-Hecho con **Next.js**, **TypeScript**, **Tailwind CSS** y **Motion**. El diseño toma como referencia el tablero de un auto deportivo de noche:
+Hecho con **Next.js**, **TypeScript**, **Tailwind CSS** y **Motion**. Diseño en negro, sobrio, con transiciones cuidadas:
 
-- Un tacómetro en SVG que hace el chequeo de encendido al cargar la página.
-- Un botón **Arrancar motor** que acelera la aguja y genera un sonido de motor con la Web Audio API, sin archivos de audio.
-- Un recorrido profesional cuya línea se enciende a medida que bajás.
-- Una tarjeta de proyecto con reflejo de luz que sigue al puntero.
-- Un ecualizador animado en la sección de habilidades.
+- Presentación con el perfil escrito como código, que se tipea al cargar la página.
+- Recorrido profesional cuya línea se completa a medida que bajás.
+- Tarjeta de proyecto con un reflejo de luz que sigue al puntero.
+- Barra de progreso de lectura y apariciones suaves al hacer scroll.
 
 Todas las animaciones respetan la opción del sistema "reducir movimiento".
 
@@ -32,8 +31,7 @@ El CV que se descarga está en `public/`. Si lo actualizás, reemplazá el PDF m
 ```
 src/
   app/          layout, página principal y estilos globales
-  components/   una sección por archivo (Hero, Tachometer, Projects, Journey, Skills, Contact)
-  lib/          sonido de arranque (engine.ts)
+  components/   una sección por archivo (Hero, CodeCard, Projects, Journey, Skills, Contact)
   data/         contenido del sitio
 public/         CV en PDF
 ```

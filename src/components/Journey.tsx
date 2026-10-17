@@ -7,7 +7,7 @@ import { Reveal } from "./Reveal";
 
 export function Journey() {
   const ref = useRef<HTMLOListElement>(null);
-  // La línea de la pista se va "encendiendo" a medida que bajás.
+  // La línea se va completando a medida que bajás.
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 60%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 25 });
 
@@ -15,7 +15,7 @@ export function Journey() {
     <section id="recorrido" className="scroll-mt-20 border-y border-line bg-graphite py-24">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal>
-          <h2 className="font-wide text-4xl sm:text-6xl">Recorrido</h2>
+          <h2 className="font-display text-4xl sm:text-6xl">Recorrido</h2>
           <p className="mt-4 max-w-xl text-lg text-muted">De lo más reciente a mis comienzos.</p>
         </Reveal>
 
@@ -50,7 +50,7 @@ function JourneyStop({ stop }: { stop: Stop }) {
         {stop.period}
       </p>
 
-      {/* Testigo del tablero: se prende cuando la parada llega al centro */}
+      {/* Indicador: se activa cuando la etapa llega al centro de la pantalla */}
       <motion.span
         aria-hidden
         className={`absolute left-0 top-0.5 h-8 w-8 rounded-full border-2 md:left-[11rem] ${
@@ -72,7 +72,7 @@ function JourneyStop({ stop }: { stop: Stop }) {
         variants={{ off: { opacity: 0.35, x: 16 }, on: { opacity: 1, x: 0 } }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <h3 className="font-wide text-2xl sm:text-3xl">{stop.title}</h3>
+        <h3 className="font-display text-2xl sm:text-3xl">{stop.title}</h3>
         <p className="mt-1 font-semibold text-champagne">{stop.place}</p>
         <p className="mt-3 max-w-xl leading-relaxed text-muted">{stop.detail}</p>
       </motion.div>

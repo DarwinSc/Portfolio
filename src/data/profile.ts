@@ -11,7 +11,6 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/darwinsierra",
   github: "https://github.com/DarwinSc",
   cv: "/CV_Darwin_Sierra_Desarrollador_Frontend.pdf",
-  offline: "Fuera del código: los autos y el buen audio.",
   now: {
     title: "DsCash",
     text: "Una PWA de finanzas personales con Next.js 14, Supabase e inteligencia artificial.",

@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 /*
-  Identidad: tablero de un auto deportivo de noche.
-  Negro puro, grafito para las superficies, champagne como la luz de los
-  instrumentos y rojo solo para la zona roja del tacómetro.
+  Identidad: negro, sobrio y elegante.
+  Negro puro de fondo, grafito para las superficies y un único acento
+  champagne para guiar la mirada (botones, enlaces y estados activos).
 */
 :root {
   --black: #000000;
@@ -13,7 +13,6 @@
   --text: #f2f2ef;
   --muted: #9a9da4;
   --champagne: #d4b26a;
-  --redline: #e0352b;
 }
 
 @theme inline {
@@ -24,7 +23,6 @@
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-champagne: var(--champagne);
-  --color-redline: var(--redline);
   --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -40,15 +38,11 @@ body {
   font-stretch: 100%;
 }
 
-/* La tipografía de títulos es la misma familia, pero expandida: el ancho
-   recuerda a los emblemas y tableros de autos deportivos. */
-.font-wide {
-  font-stretch: 125%;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-.font-narrow {
-  font-stretch: 62%;
+/* Títulos: misma familia que el texto, con más peso y el espaciado
+   ajustado para que se lean firmes en tamaños grandes. */
+.font-display {
+  font-weight: 650;
+  letter-spacing: -0.035em;
 }
 
 ::selection {
@@ -62,35 +56,8 @@ body {
   border-radius: 4px;
 }
 
-/* Barras del ecualizador de la sección de habilidades */
-.eq-bar {
-  transform-origin: bottom;
-  transform: scaleY(0.25);
-}
-.eq-on .eq-bar {
-  animation: eq 1.1s ease-in-out infinite alternate;
-}
-@keyframes eq {
-  0% {
-    transform: scaleY(0.2);
-  }
-  40% {
-    transform: scaleY(1);
-  }
-  70% {
-    transform: scaleY(0.45);
-  }
-  100% {
-    transform: scaleY(0.8);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  .eq-on .eq-bar {
-    animation: none;
-    transform: scaleY(0.6);
   }
 }

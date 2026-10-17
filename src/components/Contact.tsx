@@ -6,7 +6,7 @@ export function Contact() {
     <section id="contacto" className="scroll-mt-20 border-t border-line bg-graphite py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal>
-          <h2 className="font-wide text-5xl sm:text-7xl">Hablemos</h2>
+          <h2 className="font-display text-5xl sm:text-7xl">Hablemos</h2>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
             Busco sumarme a un equipo como desarrollador frontend. La forma más rápida de
             contactarme es por mail.
@@ -16,8 +16,7 @@ export function Contact() {
         <Reveal delay={0.1}>
           <a
             href={`mailto:${profile.email}`}
-            className="group mt-12 inline-block break-all text-[clamp(1.4rem,5vw,3.5rem)] font-bold"
-            style={{ fontStretch: "112%" }}
+            className="group mt-12 inline-block break-all text-[clamp(1.4rem,5vw,3.5rem)] font-semibold tracking-tight"
           >
             {profile.email}
             <span
@@ -44,8 +43,6 @@ export function Contact() {
             </li>
           ))}
         </ul>
-
-        <p className="mt-16 text-muted">{profile.offline}</p>
       </div>
     </section>
   );

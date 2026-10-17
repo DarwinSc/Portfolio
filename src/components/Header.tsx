@@ -22,7 +22,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-        <a href="#inicio" className="font-wide text-lg">
+        <a href="#inicio" className="font-display text-lg">
           DS<span className="text-champagne">.</span>
           <span className="sr-only"> Darwin Sierra, volver al inicio</span>
         </a>
@@ -51,7 +51,7 @@ export function Header() {
           </ul>
         </nav>
       </div>
-      {/* Barra de progreso de lectura, como un indicador de combustible */}
+      {/* Barra de progreso de lectura */}
       <motion.div
         aria-hidden
         className="h-[2px] origin-left bg-champagne"
