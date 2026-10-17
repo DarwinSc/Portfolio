@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { education, skills } from "@/data/profile";
+import { education, skills, techColors } from "@/data/profile";
 import { Container, SectionTitle } from "./ui";
 
 export function Skills() {
@@ -27,14 +27,33 @@ export function Skills() {
             >
               <h3 className="text-muted">{g.group}</h3>
               <ul className="mt-5 space-y-1.5">
-                {g.items.map((item) => (
-                  <li
-                    key={item}
-                    className="text-2xl font-semibold tracking-tight transition-transform duration-300 hover:translate-x-2"
-                  >
-                    {item}
-                  </li>
-                ))}
+                {g.items.map((item) => {
+                  // Las tecnologías llevan el color de su logo; los conceptos
+                  // (APIs REST, Metodologías ágiles...) un gris neutro.
+                  const color =
+                    g.group === "Formación" ? undefined : (techColors[item] ?? "#6b6b6b");
+                  return (
+                    <li
+                      key={item}
+                      className="group flex items-center gap-3 text-2xl font-semibold tracking-tight transition-transform duration-300 hover:translate-x-2"
+                      style={
+                        color
+                          ? ({
+                              "--tech": color,
+                              "--tech-text": techColors[item] ?? "var(--fg)",
+                            } as React.CSSProperties)
+                          : undefined
+                      }
+                    >
+                      {color && (
+                        <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--tech)] transition-transform duration-300 group-hover:scale-150" />
+                      )}
+                      <span className={color ? "transition-colors duration-300 group-hover:text-[var(--tech-text)]" : ""}>
+                        {item}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             </motion.div>
           ))}

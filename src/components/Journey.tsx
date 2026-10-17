@@ -16,16 +16,16 @@ export function Journey() {
           {journey.map((stop, i) => (
             <motion.li
               key={stop.period + stop.place}
-              className="group grid gap-2 border-t border-line-strong px-0 py-7 transition-colors duration-300 hover:bg-fg hover:text-bg md:grid-cols-12 md:gap-5 md:px-4"
+              className="group grid gap-2 border-t border-line-strong px-0 py-7 transition-colors duration-300 hover:bg-accent hover:text-accent-fg md:grid-cols-12 md:gap-5 md:px-4"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="text-muted transition-colors group-hover:text-bg/60 md:col-span-3">{stop.period}</p>
+              <p className="text-muted transition-colors group-hover:text-accent-fg/70 md:col-span-3">{stop.period}</p>
               <div className="md:col-span-5">
                 <h3 className="text-2xl font-bold tracking-tight md:text-3xl">{stop.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted transition-colors group-hover:text-bg/70">
+                <p className="mt-2 leading-relaxed text-muted transition-colors group-hover:text-accent-fg/80">
                   {stop.detail}
                 </p>
               </div>

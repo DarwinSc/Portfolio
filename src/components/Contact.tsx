@@ -40,7 +40,7 @@ export function Contact() {
               {profile.email}
               <span
                 aria-hidden
-                className="mt-1 block h-[3px] origin-left scale-x-0 bg-fg transition-transform duration-500 ease-out group-hover:scale-x-100 md:origin-right"
+                className="mt-1 block h-[3px] origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100 md:origin-right"
               />
             </a>
             <ul className="mt-8 flex flex-wrap gap-3 md:justify-end">
@@ -50,7 +50,7 @@ export function Contact() {
                     <a
                       href={link.href}
                       {...(link.external ? { target: "_blank", rel: "noreferrer" } : { download: true })}
-                      className="inline-block rounded-full border border-line-strong px-6 py-3 transition-colors hover:bg-fg hover:text-bg"
+                      className="inline-block rounded-full border border-line-strong px-6 py-3 transition-colors hover:bg-accent hover:text-accent-fg"
                     >
                       {link.label}
                     </a>

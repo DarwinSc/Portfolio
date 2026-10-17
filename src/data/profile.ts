@@ -119,12 +119,41 @@ export const marquee = [
   "React",
   "Next.js",
   "TypeScript",
-  "Interfaces",
+  "JavaScript",
   "Supabase",
-  "Diseño responsive",
-  "Animaciones",
-  "PWA",
+  "Redux",
+  "Sass",
+  "Figma",
+  "Git",
+  "Vercel",
 ];
+
+// Color de referencia del logo de cada tecnología. Las que tienen logo
+// blanco o negro (Next.js, Vercel, GitHub) quedan en blanco. Algunos tonos
+// muy oscuros se aclararon un poco para que se lean sobre el fondo negro.
+export const techColors: Record<string, string> = {
+  React: "#61dafb",
+  "Next.js": "#ffffff",
+  TypeScript: "#3d8bd8",
+  JavaScript: "#f7df1e",
+  HTML5: "#e34f26",
+  CSS3: "#2f8fd8",
+  Redux: "#9a6fe0",
+  Sass: "#cc6699",
+  "Material UI": "#2f8fff",
+  Bootstrap: "#9a73d9",
+  Figma: "#f24e1e",
+  Supabase: "#3ecf8e",
+  Vercel: "#ffffff",
+  AWS: "#ff9900",
+  Azure: "#2a95ec",
+  Git: "#f05032",
+  GitHub: "#ffffff",
+  GitLab: "#fc6d26",
+  Jira: "#4c9aff",
+  "Next.js 14": "#ffffff",
+  "Vercel Edge": "#ffffff",
+};
 
 export const education = {
   title: "Técnico Superior Universitario en Informática",

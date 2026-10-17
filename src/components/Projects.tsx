@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { projects, type Project } from "@/data/profile";
+import { projects, techColors, type Project } from "@/data/profile";
 import { Container, SectionTitle } from "./ui";
 
 export function Projects() {
@@ -31,7 +31,8 @@ function ProjectBlock({ project }: { project: Project }) {
           <p className="text-xl leading-relaxed">{project.summary}</p>
           <ul className="mt-6 flex flex-wrap gap-2" aria-label="Tecnologías">
             {project.stack.map((tech) => (
-              <li key={tech} className="rounded-full border border-line-strong px-3 py-1 text-sm text-muted">
+              <li key={tech} className="flex items-center gap-2 rounded-full border border-line-strong px-3 py-1 text-sm text-muted">
+                <span aria-hidden className="h-2 w-2 rounded-full" style={{ background: techColors[tech] ?? "var(--muted)" }} />
                 {tech}
               </li>
             ))}
@@ -43,7 +44,7 @@ function ProjectBlock({ project }: { project: Project }) {
                   href={project.demoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full bg-fg px-6 py-3 font-bold text-bg transition-transform active:scale-95"
+                  className="rounded-full bg-accent px-6 py-3 font-bold text-accent-fg transition-transform active:scale-95"
                 >
                   Probar la app
                 </a>
@@ -53,7 +54,7 @@ function ProjectBlock({ project }: { project: Project }) {
                   href={project.repoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full border border-line-strong px-6 py-3 transition-colors hover:bg-fg hover:text-bg"
+                  className="rounded-full border border-line-strong px-6 py-3 transition-colors hover:bg-accent hover:text-accent-fg"
                 >
                   Ver código
                 </a>
@@ -67,13 +68,13 @@ function ProjectBlock({ project }: { project: Project }) {
         {project.features.map((feature, i) => (
           <motion.li
             key={feature}
-            className="group border-b border-r border-line-strong p-6 transition-colors duration-300 hover:bg-fg hover:text-bg md:p-8"
+            className="group border-b border-r border-line-strong p-6 transition-colors duration-300 hover:bg-accent hover:text-accent-fg md:p-8"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ delay: i * 0.07, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span aria-hidden className="mb-10 block h-px w-10 bg-fg transition-all duration-300 group-hover:w-20 group-hover:bg-bg" />
+            <span aria-hidden className="mb-10 block h-px w-10 bg-accent transition-all duration-300 group-hover:w-20 group-hover:bg-accent-fg" />
             <p className="text-lg leading-snug">{feature}</p>
           </motion.li>
         ))}

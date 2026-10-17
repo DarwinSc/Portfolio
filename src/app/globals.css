@@ -12,6 +12,10 @@
   --muted: #8c8c8c;
   --line: #1c1c1c;
   --line-strong: #333333;
+  /* Color de acento: botones, filas al pasar el mouse, cinta y barra de progreso.
+     --accent-fg es el color del texto que va encima del acento. */
+  --accent: #ffffff;
+  --accent-fg: #000000;
 }
 
 @theme inline {
@@ -20,6 +24,8 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
   --font-sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -45,8 +51,8 @@ body {
 }
 
 ::selection {
-  background: var(--fg);
-  color: var(--bg);
+  background: var(--accent);
+  color: var(--accent-fg);
 }
 
 :focus-visible {

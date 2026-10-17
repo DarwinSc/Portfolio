@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { marquee, profile } from "@/data/profile";
+import { marquee, profile, techColors } from "@/data/profile";
 import { Container, GridLines, Magnetic } from "./ui";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -48,7 +48,7 @@ export function Hero() {
             <Magnetic>
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-block rounded-full bg-fg px-7 py-4 text-lg font-bold text-bg transition-transform active:scale-95"
+                className="inline-block rounded-full bg-accent px-7 py-4 text-lg font-bold text-accent-fg transition-transform active:scale-95"
               >
                 Contactame
               </a>
@@ -56,7 +56,7 @@ export function Hero() {
             <Magnetic>
               <a
                 href="#proyectos"
-                className="inline-block rounded-full border border-line-strong px-7 py-4 text-lg transition-colors hover:bg-fg hover:text-bg"
+                className="inline-block rounded-full border border-line-strong px-7 py-4 text-lg transition-colors hover:bg-accent hover:text-accent-fg"
               >
                 Proyectos
               </a>
@@ -95,12 +95,17 @@ function Marquee() {
   return (
     <div className="marquee overflow-hidden border-y border-line-strong py-6" aria-label={marquee.join(", ")}>
       <div className="marquee-track flex w-max" aria-hidden>
-        {items.map((word, i) => (
-          <span key={i} className="flex items-center whitespace-nowrap text-[clamp(2.5rem,7vw,6rem)] font-extrabold tracking-[-0.04em]">
-            <span className={i % 2 ? "text-transparent [-webkit-text-stroke:1.5px_var(--fg)]" : ""}>{word}</span>
-            <span className="mx-8 inline-block h-3 w-3 rounded-full bg-fg md:mx-12" />
-          </span>
-        ))}
+        {items.map((word, i) => {
+          const color = techColors[word] ?? "var(--fg)";
+          // Se alternan palabras llenas y caladas, cada una con el color de su logo.
+          const style = i % 2 ? { color: "transparent", WebkitTextStroke: `1.5px ${color}` } : { color };
+          return (
+            <span key={i} className="flex items-center whitespace-nowrap text-[clamp(2.5rem,7vw,6rem)] font-extrabold tracking-[-0.04em]">
+              <span style={style}>{word}</span>
+              <span className="mx-8 inline-block h-3 w-3 rounded-full md:mx-12" style={{ background: color }} />
+            </span>
+          );
+        })}
       </div>
     </div>
   );

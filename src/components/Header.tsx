@@ -49,7 +49,7 @@ export function Header() {
               <a
                 href={profile.cv}
                 download
-                className="rounded-full border border-line-strong px-4 py-2 font-semibold transition-colors hover:bg-fg hover:text-bg"
+                className="rounded-full border border-line-strong px-4 py-2 font-semibold transition-colors hover:bg-accent hover:text-accent-fg"
               >
                 Descargar CV
               </a>
@@ -57,7 +57,7 @@ export function Header() {
           </ul>
         </nav>
       </Container>
-      <motion.div aria-hidden className="h-px origin-left bg-fg" style={{ scaleX: scrollYProgress }} />
+      <motion.div aria-hidden className="h-[2px] origin-left bg-accent" style={{ scaleX: scrollYProgress }} />
     </header>
   );
 }
