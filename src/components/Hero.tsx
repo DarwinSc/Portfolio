@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { marquee, profile, techColors } from "@/data/profile";
-import { Container, GridLines, Magnetic } from "./ui";
+import { Container, Magnetic } from "./ui";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -12,8 +12,6 @@ export function Hero() {
 
   return (
     <section id="inicio" className="relative overflow-hidden pb-16">
-      <GridLines />
-
       <Container className="relative">
         <h1 className="display -ml-[0.04em] pt-6 tracking-[-0.035em] text-[clamp(4.5rem,19.5vw,15.75rem)]" aria-label={profile.name}>
           {words.map((word, w) => (

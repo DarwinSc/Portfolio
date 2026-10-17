@@ -22,10 +22,11 @@ const glints = [
   { col: 11, side: "right", color: "#f24e1e", dur: 12.5, delay: 2.5 },
 ] as const;
 
-// Grilla de 12 columnas visible de fondo, como en una mesa de diseño.
+// Grilla de 12 columnas fija detrás de toda la página, como en una mesa de diseño.
+// Queda quieta mientras el contenido se desplaza por encima.
 export function GridLines() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       <Container className="grid h-full grid-cols-4 gap-5 md:grid-cols-12">
         {Array.from({ length: 12 }, (_, i) => (
           <i key={i} className={`relative border-x border-line ${i >= 4 ? "hidden md:block" : ""}`}>

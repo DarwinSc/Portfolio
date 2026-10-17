@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { profile } from "@/data/profile";
-import { Container, GridLines, Magnetic } from "./ui";
+import { Container, Magnetic } from "./ui";
 
 export function Contact() {
   const links = [
@@ -13,7 +13,6 @@ export function Contact() {
 
   return (
     <section id="contacto" className="relative scroll-mt-24 overflow-hidden border-t border-line-strong pb-16 pt-28">
-      <GridLines />
       <Container className="relative">
         <h2 className="display overflow-hidden pb-[0.06em] text-[clamp(4rem,17vw,14rem)]">
           <motion.span
