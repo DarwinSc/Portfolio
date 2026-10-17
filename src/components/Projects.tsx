@@ -43,7 +43,9 @@ function ProjectBlock({ project }: { project: Project }) {
       >
         <div className="md:col-span-6">
           <p className="text-muted">Proyecto propio, en desarrollo</p>
-          <h3 className="display mt-4 text-[clamp(3rem,8vw,6.5rem)]">{project.name}</h3>
+          <h3 className="display mt-4 text-[clamp(3rem,8vw,6.5rem)]" style={{ color: project.color }}>
+            {project.name}
+          </h3>
         </div>
         <div className="flex items-end justify-between gap-6 md:col-span-6">
           <ul className="flex flex-wrap gap-2" aria-label="Tecnologías">

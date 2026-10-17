@@ -23,6 +23,8 @@ export const profile = {
 export type Project = {
   name: string;
   summary: string;
+  // Color de marca del proyecto: se usa en el título de la tarjeta.
+  color: string;
   features: string[];
   stack: string[];
   // Dejá el string vacío si todavía no hay link: el botón no se muestra.
@@ -33,6 +35,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: "DsCash",
+    color: "#8b5cf6",
     summary:
       "Aplicación de finanzas personales pensada para la realidad argentina: gastos en pesos y en dólares, grupos para dividir cuentas y metas de ahorro.",
     features: [
