@@ -33,13 +33,15 @@ function ProjectBlock({ project }: { project: Project }) {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.7, ease }}
     >
-      {/* Cabecera: siempre visible. Al tocarla, se despliega el detalle. */}
+      {/* Cabecera: siempre visible. Al tocarla, se despliega el detalle.
+          El botón "Visitar" va aparte porque un enlace no puede ir dentro de un botón. */}
+      <div className="flex flex-col md:flex-row md:items-stretch">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-controls={panelId}
-        className="group grid w-full gap-6 p-6 text-left transition-colors duration-300 hover:bg-fg/[0.03] md:grid-cols-12 md:items-end md:gap-5 md:p-10"
+        className="group grid flex-1 gap-6 p-6 text-left transition-colors duration-300 hover:bg-fg/[0.03] md:grid-cols-12 md:items-end md:gap-5 md:p-10"
       >
         <div className="md:col-span-6">
           <p className="text-muted">Proyecto propio, en desarrollo</p>
@@ -70,6 +72,24 @@ function ProjectBlock({ project }: { project: Project }) {
           </span>
         </div>
       </button>
+      {project.demoUrl && (
+        <div className="flex items-end px-6 pb-6 md:pb-10 md:pl-0 md:pr-10">
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group/visit inline-flex h-12 items-center gap-2 rounded-full px-6 font-bold text-black transition-transform active:scale-95"
+            style={{ background: project.color }}
+          >
+            Visitar
+            <span aria-hidden className="inline-block transition-transform duration-300 group-hover/visit:-translate-y-0.5 group-hover/visit:translate-x-0.5">
+              ↗
+            </span>
+            <span className="sr-only"> {project.name} (se abre en otra pestaña)</span>
+          </a>
+        </div>
+      )}
+      </div>
 
       <AnimatePresence initial={false}>
         {open && (
@@ -85,18 +105,8 @@ function ProjectBlock({ project }: { project: Project }) {
             <div className="grid gap-10 border-t border-line-strong p-6 md:grid-cols-12 md:gap-5 md:p-10">
               <div className="md:col-span-5">
                 <p className="text-xl leading-relaxed">{project.summary}</p>
-                {(project.demoUrl || project.repoUrl) && (
+                {project.repoUrl && (
                   <div className="mt-8 flex flex-wrap gap-3">
-                    {project.demoUrl && (
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full bg-accent px-6 py-3 font-bold text-accent-fg transition-transform active:scale-95"
-                      >
-                        Probar la app
-                      </a>
-                    )}
                     {project.repoUrl && (
                       <a
                         href={project.repoUrl}

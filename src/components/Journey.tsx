@@ -1,11 +1,24 @@
 "use client";
 
 import { motion } from "motion/react";
-import { journey } from "@/data/profile";
+import { journey, techColors } from "@/data/profile";
 import { Container, SectionTitle } from "./ui";
 
+// Colores de la paleta de tecnologías que se leen bien con texto negro encima
+// (se descartan los blancos de Next.js, Vercel y GitHub).
+const rowColors = [...new Set(Object.values(techColors))].filter((c) => c !== "#ffffff");
+
+// Cada vez que el mouse entra en una fila, elige un color al azar distinto del anterior.
+function paintRow(e: React.PointerEvent<HTMLLIElement>) {
+  const el = e.currentTarget;
+  const prev = el.style.getPropertyValue("--row");
+  let next = prev;
+  while (next === prev) next = rowColors[Math.floor(Math.random() * rowColors.length)];
+  el.style.setProperty("--row", next);
+}
+
 // El recorrido como un índice: una fila por etapa. Al pasar el mouse,
-// la fila se invierte a blanco sobre negro.
+// la fila se pinta con un color de la paleta de tecnologías.
 export function Journey() {
   return (
     <section id="recorrido" className="scroll-mt-24 py-28">
@@ -16,16 +29,18 @@ export function Journey() {
           {journey.map((stop, i) => (
             <motion.li
               key={stop.period + stop.place}
-              className="group grid gap-2 border-t border-line-strong px-0 py-7 transition-colors duration-300 hover:bg-accent hover:text-accent-fg md:grid-cols-12 md:gap-5 md:px-4"
+              onPointerEnter={paintRow}
+              style={{ "--row": rowColors[i % rowColors.length] } as React.CSSProperties}
+              className="group grid gap-2 border-t border-line-strong px-0 py-7 transition-colors duration-300 hover:bg-[var(--row)] hover:text-black md:grid-cols-12 md:gap-5 md:px-4"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="text-muted transition-colors group-hover:text-accent-fg/70 md:col-span-3">{stop.period}</p>
+              <p className="text-muted transition-colors group-hover:text-black/70 md:col-span-3">{stop.period}</p>
               <div className="md:col-span-5">
                 <h3 className="text-2xl font-bold tracking-tight md:text-3xl">{stop.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted transition-colors group-hover:text-accent-fg/80">
+                <p className="mt-2 leading-relaxed text-muted transition-colors group-hover:text-black/80">
                   {stop.detail}
                 </p>
               </div>

@@ -46,7 +46,7 @@ export const projects: Project[] = [
       "Instalable como app en el celular (PWA).",
     ],
     stack: ["Next.js 14", "TypeScript", "Supabase", "Vercel Edge", "IA"],
-    demoUrl: "",
+    demoUrl: "https://dscash.vercel.app/",
     repoUrl: "",
   },
 ];

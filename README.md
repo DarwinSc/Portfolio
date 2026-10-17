@@ -7,7 +7,7 @@ Hecho con **Next.js**, **TypeScript**, **Tailwind CSS** y **Motion**. Estética 
 - Nombre gigante que aparece letra por letra al cargar.
 - Cinta animada con el stack, cada tecnología con el color de su logo (o una foto en blanco y negro que toma color al pasar el mouse, si se completa `photo` en `profile.ts`).
 - Botones magnéticos que siguen levemente al puntero.
-- Recorrido como índice: cada fila se invierte al pasar el mouse.
+- Recorrido como índice: cada fila se pinta con un color al azar de la paleta de tecnologías al pasar el mouse.
 - Proyectos como tarjetas desplegables: se abren para ver el detalle.
 - Herramientas con el color de referencia de cada logo, que se enciende al pasar el mouse.
 - Títulos de sección que entran deslizándose y barra de progreso de lectura.
