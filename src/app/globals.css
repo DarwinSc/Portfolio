@@ -8,13 +8,15 @@
 */
 :root {
   --bg: #000000;
-  --fg: #ffffff;
+  --fg: #ececea;
+  /* Los títulos gigantes van un tono más abajo para no encandilar. */
+  --title: #d6d5d0;
   --muted: #8c8c8c;
   --line: #1c1c1c;
   --line-strong: #333333;
   /* Color de acento: botones, filas al pasar el mouse, cinta y barra de progreso.
      --accent-fg es el color del texto que va encima del acento. */
-  --accent: #ffffff;
+  --accent: #ececea;
   --accent-fg: #000000;
 }
 
@@ -44,6 +46,7 @@ body {
 /* En @layer components para que las clases de Tailwind puedan ajustarlo. */
 @layer components {
   .display {
+    color: var(--title);
     font-weight: 800;
     letter-spacing: -0.055em;
     line-height: 0.82;
