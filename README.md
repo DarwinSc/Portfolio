@@ -2,12 +2,13 @@
 
 Sitio personal de Darwin Sierra, desarrollador frontend en Buenos Aires.
 
-Hecho con **Next.js**, **TypeScript**, **Tailwind CSS** y **Motion**. Diseño en negro, sobrio, con transiciones cuidadas:
+Hecho con **Next.js**, **TypeScript**, **Tailwind CSS** y **Motion**. Estética de estudio de diseño: blanco y negro, grilla de 12 columnas visible y una sola tipografía (Bricolage Grotesque) a escalas muy distintas.
 
-- Presentación con el perfil escrito como código, que se tipea al cargar la página.
-- Recorrido profesional cuya línea se completa a medida que bajás.
-- Tarjeta de proyecto con un reflejo de luz que sigue al puntero.
-- Barra de progreso de lectura y apariciones suaves al hacer scroll.
+- Nombre gigante que aparece letra por letra al cargar.
+- Cinta animada con el stack (o una foto en blanco y negro que toma color al pasar el mouse, si se completa `photo` en `profile.ts`).
+- Botones magnéticos que siguen levemente al puntero.
+- Recorrido como índice: cada fila se invierte al pasar el mouse.
+- Títulos de sección que entran deslizándose y barra de progreso de lectura.
 
 Todas las animaciones respetan la opción del sistema "reducir movimiento".
 
@@ -22,7 +23,7 @@ Abrí [http://localhost:3000](http://localhost:3000).
 
 ## Cómo actualizar el contenido
 
-Todos los textos y datos están en `src/data/profile.ts`. Para sumar un proyecto, agregalo al array `projects`; si tiene demo o repositorio, completá `demoUrl` y `repoUrl` y los botones aparecen solos.
+Todos los textos y datos están en `src/data/profile.ts`. Para sumar tu foto, guardala en `public/` y completá el campo `photo` (por ejemplo `"/foto.jpg"`). Para sumar un proyecto, agregalo al array `projects`; si tiene demo o repositorio, completá `demoUrl` y `repoUrl` y los botones aparecen solos.
 
 El CV que se descarga está en `public/`. Si lo actualizás, reemplazá el PDF manteniendo el mismo nombre.
 
@@ -31,7 +32,7 @@ El CV que se descarga está en `public/`. Si lo actualizás, reemplazá el PDF m
 ```
 src/
   app/          layout, página principal y estilos globales
-  components/   una sección por archivo (Hero, CodeCard, Projects, Journey, Skills, Contact)
+  components/   una sección por archivo (Hero, Projects, Journey, Skills, Contact) y piezas comunes en ui.tsx
   data/         contenido del sitio
 public/         CV en PDF
 ```

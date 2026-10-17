@@ -1,71 +1,37 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-} from "motion/react";
+import { motion } from "motion/react";
 import { projects, type Project } from "@/data/profile";
-import { Reveal } from "./Reveal";
+import { Container, SectionTitle } from "./ui";
 
 export function Projects() {
   return (
-    <section id="proyectos" className="scroll-mt-20 py-24">
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <Reveal>
-          <h2 className="font-display text-4xl sm:text-6xl">Proyectos</h2>
-        </Reveal>
-        <div className="mt-14 space-y-10">
+    <section id="proyectos" className="scroll-mt-24 py-28">
+      <Container>
+        <SectionTitle>Proyectos</SectionTitle>
+        <div className="mt-16 space-y-24">
           {projects.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+            <ProjectBlock key={project.name} project={project} />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  const ref = useRef<HTMLElement>(null);
-
-  // Posición del puntero dentro de la tarjeta: mueve un reflejo de luz suave.
-  const mx = useMotionValue(50);
-  const my = useMotionValue(30);
-  const shine = useMotionTemplate`radial-gradient(520px circle at ${mx}% ${my}%, rgba(212,178,106,0.16), transparent 60%)`;
-
-  function onMove(e: React.PointerEvent<HTMLElement>) {
-    const box = ref.current?.getBoundingClientRect();
-    if (!box) return;
-    const px = ((e.clientX - box.left) / box.width) * 100;
-    const py = ((e.clientY - box.top) / box.height) * 100;
-    mx.set(px);
-    my.set(py);
-  }
-
+function ProjectBlock({ project }: { project: Project }) {
   return (
-    <motion.article
-      ref={ref}
-      onPointerMove={onMove}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="relative overflow-hidden rounded-3xl border border-line bg-graphite p-7 sm:p-12"
-    >
-      <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: shine }} />
-
-      <div className="relative grid gap-10 lg:grid-cols-[1fr_1.1fr]">
-        <div>
-          <p className="text-sm text-champagne">Proyecto propio, en desarrollo</p>
-          <h3 className="font-display mt-3 text-5xl sm:text-6xl">{project.name}</h3>
-          <p className="mt-5 text-lg leading-relaxed text-muted">{project.summary}</p>
-          <ul className="mt-7 flex flex-wrap gap-2" aria-label="Tecnologías">
+    <article className="border-t border-line-strong pt-10">
+      <div className="grid gap-8 md:grid-cols-12 md:gap-5">
+        <div className="md:col-span-6">
+          <p className="text-muted">Proyecto propio, en desarrollo</p>
+          <h3 className="display mt-4 text-[clamp(3rem,8vw,6.5rem)]">{project.name}</h3>
+        </div>
+        <div className="md:col-span-6 lg:col-start-8 lg:col-span-5">
+          <p className="text-xl leading-relaxed">{project.summary}</p>
+          <ul className="mt-6 flex flex-wrap gap-2" aria-label="Tecnologías">
             {project.stack.map((tech) => (
-              <li
-                key={tech}
-                className="rounded-full border border-line px-3 py-1 text-sm font-semibold transition-colors hover:border-champagne hover:text-champagne"
-              >
+              <li key={tech} className="rounded-full border border-line-strong px-3 py-1 text-sm text-muted">
                 {tech}
               </li>
             ))}
@@ -77,7 +43,7 @@ function ProjectCard({ project }: { project: Project }) {
                   href={project.demoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full bg-champagne px-6 py-3 font-semibold text-black transition-transform active:scale-95"
+                  className="rounded-full bg-fg px-6 py-3 font-bold text-bg transition-transform active:scale-95"
                 >
                   Probar la app
                 </a>
@@ -87,7 +53,7 @@ function ProjectCard({ project }: { project: Project }) {
                   href={project.repoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full border border-line px-6 py-3 font-semibold transition-colors hover:border-text"
+                  className="rounded-full border border-line-strong px-6 py-3 transition-colors hover:bg-fg hover:text-bg"
                 >
                   Ver código
                 </a>
@@ -95,23 +61,23 @@ function ProjectCard({ project }: { project: Project }) {
             </div>
           )}
         </div>
-
-        <ul className="space-y-1">
-          {project.features.map((feature, i) => (
-            <motion.li
-              key={feature}
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 + i * 0.08, duration: 0.5 }}
-              className="flex gap-4 border-t border-line py-4 leading-relaxed"
-            >
-              <span aria-hidden className="mt-2.5 h-1.5 w-4 shrink-0 rounded-full bg-champagne" />
-              {feature}
-            </motion.li>
-          ))}
-        </ul>
       </div>
-    </motion.article>
+
+      <ul className="mt-16 grid border-l border-t border-line-strong sm:grid-cols-2 lg:grid-cols-3">
+        {project.features.map((feature, i) => (
+          <motion.li
+            key={feature}
+            className="group border-b border-r border-line-strong p-6 transition-colors duration-300 hover:bg-fg hover:text-bg md:p-8"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ delay: i * 0.07, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span aria-hidden className="mb-10 block h-px w-10 bg-fg transition-all duration-300 group-hover:w-20 group-hover:bg-bg" />
+            <p className="text-lg leading-snug">{feature}</p>
+          </motion.li>
+        ))}
+      </ul>
+    </article>
   );
 }

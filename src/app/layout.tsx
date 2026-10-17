@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/archivo/wdth.css";
+import "@fontsource-variable/bricolage-grotesque/standard.css";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 

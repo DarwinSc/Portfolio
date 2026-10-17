@@ -4,7 +4,6 @@ import { Hero } from "@/components/Hero";
 import { Journey } from "@/components/Journey";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
-import { profile } from "@/data/profile";
 
 export default function Home() {
   return (
@@ -17,11 +16,6 @@ export default function Home() {
         <Skills />
         <Contact />
       </main>
-      <footer className="border-t border-line bg-graphite">
-        <p className="mx-auto w-full max-w-6xl px-4 py-8 text-sm text-muted sm:px-6">
-          {profile.name}. Hecho con Next.js, Tailwind CSS y Motion.
-        </p>
-      </footer>
     </>
   );
 }

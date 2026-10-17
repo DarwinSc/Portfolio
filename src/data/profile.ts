@@ -11,6 +11,9 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/darwinsierra",
   github: "https://github.com/DarwinSc",
   cv: "/CV_Darwin_Sierra_Desarrollador_Frontend.pdf",
+  // Cuando tengas una foto, guardala en /public (por ejemplo /public/foto.jpg)
+  // y poné acá "/foto.jpg". Se muestra en blanco y negro y toma color al pasar el mouse.
+  photo: "",
   now: {
     title: "DsCash",
     text: "Una PWA de finanzas personales con Next.js 14, Supabase e inteligencia artificial.",
@@ -109,6 +112,18 @@ export const skills: { group: string; items: string[] }[] = [
   },
   { group: "Servicios", items: ["Supabase", "Vercel", "AWS", "Azure", "APIs REST"] },
   { group: "Forma de trabajo", items: ["Git", "GitHub", "GitLab", "Jira", "Metodologías ágiles"] },
+];
+
+// Palabras de la cinta animada debajo del inicio.
+export const marquee = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Interfaces",
+  "Supabase",
+  "Diseño responsive",
+  "Animaciones",
+  "PWA",
 ];
 
 export const education = {

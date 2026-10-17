@@ -1,29 +1,26 @@
 @import "tailwindcss";
 
 /*
-  Identidad: negro, sobrio y elegante.
-  Negro puro de fondo, grafito para las superficies y un único acento
-  champagne para guiar la mirada (botones, enlaces y estados activos).
+  Identidad: estudio de diseño.
+  Blanco y negro puro, una grilla de 12 columnas que se deja ver y una sola
+  familia tipográfica (Bricolage Grotesque) usada a escalas muy distintas.
+  Sin color de acento: los estados activos se marcan invirtiendo blanco y negro.
 */
 :root {
-  --black: #000000;
-  --graphite: #111214;
-  --graphite-2: #191a1d;
-  --line: #2a2c31;
-  --text: #f2f2ef;
-  --muted: #9a9da4;
-  --champagne: #d4b26a;
+  --bg: #000000;
+  --fg: #ffffff;
+  --muted: #8c8c8c;
+  --line: #1c1c1c;
+  --line-strong: #333333;
 }
 
 @theme inline {
-  --color-black: var(--black);
-  --color-graphite: var(--graphite);
-  --color-graphite-2: var(--graphite-2);
-  --color-line: var(--line);
-  --color-text: var(--text);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
   --color-muted: var(--muted);
-  --color-champagne: var(--champagne);
-  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --font-sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -32,32 +29,50 @@ html {
 }
 
 body {
-  background: var(--black);
-  color: var(--text);
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--font-sans);
-  font-stretch: 100%;
 }
 
-/* Títulos: misma familia que el texto, con más peso y el espaciado
-   ajustado para que se lean firmes en tamaños grandes. */
-.font-display {
-  font-weight: 650;
-  letter-spacing: -0.035em;
+/* Títulos gigantes: peso máximo e interletrado cerrado. */
+/* En @layer components para que las clases de Tailwind puedan ajustarlo. */
+@layer components {
+  .display {
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 0.82;
+  }
 }
 
 ::selection {
-  background: var(--champagne);
-  color: #000;
+  background: var(--fg);
+  color: var(--bg);
 }
 
 :focus-visible {
-  outline: 2px solid var(--champagne);
+  outline: 2px solid var(--fg);
   outline-offset: 4px;
   border-radius: 4px;
+}
+
+/* Cinta del stack: dos copias del contenido que se desplazan en bucle. */
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
   }
 }

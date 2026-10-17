@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { profile } from "@/data/profile";
+import { Container } from "./ui";
 
 const links = [
   { href: "#proyectos", label: "Proyectos" },
@@ -18,24 +19,29 @@ export function Header() {
   return (
     <header
       className={`sticky top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "border-b border-line bg-black/75 backdrop-blur-md" : "border-b border-transparent"
+        scrolled ? "bg-bg/80 backdrop-blur-md" : ""
       }`}
     >
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-        <a href="#inicio" className="font-display text-lg">
-          DS<span className="text-champagne">.</span>
+      <Container className="flex items-center justify-between gap-4 py-5">
+        <a href="#inicio" className="text-lg font-extrabold tracking-tight">
+          DS
           <span className="sr-only"> Darwin Sierra, volver al inicio</span>
         </a>
         <nav aria-label="Secciones">
-          <ul className="flex items-center gap-5 text-sm sm:gap-7">
+          <ul className="flex items-center gap-6 text-[15px]">
             {links.map((link) => (
               <li key={link.href} className="hidden sm:block">
-                <a href={link.href} className="group relative py-1 text-muted transition-colors hover:text-text">
-                  {link.label}
+                <a href={link.href} className="group relative block overflow-hidden text-muted hover:text-fg">
+                  {/* El texto se reemplaza por una copia que sube al pasar el mouse */}
+                  <span className="block transition-transform duration-300 group-hover:-translate-y-full">
+                    {link.label}
+                  </span>
                   <span
                     aria-hidden
-                    className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-champagne transition-transform duration-300 group-hover:scale-x-100"
-                  />
+                    className="absolute inset-0 translate-y-full text-fg transition-transform duration-300 group-hover:translate-y-0"
+                  >
+                    {link.label}
+                  </span>
                 </a>
               </li>
             ))}
@@ -43,20 +49,15 @@ export function Header() {
               <a
                 href={profile.cv}
                 download
-                className="rounded-full border border-line px-4 py-2 font-bold transition-colors hover:border-champagne hover:text-champagne"
+                className="rounded-full border border-line-strong px-4 py-2 font-semibold transition-colors hover:bg-fg hover:text-bg"
               >
                 Descargar CV
               </a>
             </li>
           </ul>
         </nav>
-      </div>
-      {/* Barra de progreso de lectura */}
-      <motion.div
-        aria-hidden
-        className="h-[2px] origin-left bg-champagne"
-        style={{ scaleX: scrollYProgress }}
-      />
+      </Container>
+      <motion.div aria-hidden className="h-px origin-left bg-fg" style={{ scaleX: scrollYProgress }} />
     </header>
   );
 }

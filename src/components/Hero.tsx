@@ -1,82 +1,107 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { profile } from "@/data/profile";
-import { CodeCard } from "./CodeCard";
+import { marquee, profile } from "@/data/profile";
+import { Container, GridLines, Magnetic } from "./ui";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const [first, last] = profile.name.split(" ");
+  const words = profile.name.split(" ");
 
   return (
-    <section
-      id="inicio"
-      className="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-4 pb-28 pt-12 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:pt-20"
-    >
-      <div className="min-w-0">
-        <h1 className="font-display text-[clamp(3.25rem,10vw,7rem)] leading-[0.95]">
-          {[first, last].map((word, i) => (
-            <span key={word} className="block overflow-hidden pb-[0.08em]">
-              <motion.span
-                className="block"
-                initial={reduce ? false : { y: "110%" }}
-                animate={{ y: "0%" }}
-                transition={{ delay: 0.15 + i * 0.12, duration: 0.9, ease }}
-              >
-                {word}
-              </motion.span>
+    <section id="inicio" className="relative overflow-hidden pb-16">
+      <GridLines />
+
+      <Container className="relative">
+        <h1 className="display -ml-[0.04em] pt-6 tracking-[-0.035em] text-[clamp(4.5rem,19.5vw,15.75rem)]" aria-label={profile.name}>
+          {words.map((word, w) => (
+            <span key={word} aria-hidden className="block overflow-hidden pb-[0.07em]">
+              {/* Cada letra sube por separado, con un pequeño desfase entre ellas */}
+              {word.split("").map((letter, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block"
+                  initial={reduce ? false : { y: "105%" }}
+                  animate={{ y: "0%" }}
+                  transition={{ delay: 0.1 + w * 0.18 + i * 0.035, duration: 0.85, ease }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
             </span>
           ))}
         </h1>
 
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 16 }}
+          className="mt-8 grid gap-8 md:grid-cols-12 md:gap-5"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.7, ease }}
+          transition={{ delay: 0.75, duration: 0.8, ease }}
         >
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-            <strong className="font-semibold text-text">{profile.role}.</strong> {profile.intro}
+          <p className="text-lg leading-relaxed text-muted md:col-span-6 md:text-xl lg:col-span-5">
+            <span className="text-fg">{profile.role} en Buenos Aires.</span> Interfaces con React,
+            Next.js y TypeScript, pensadas con criterio de diseño y animaciones cuidadas.
           </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <a
-              href={`mailto:${profile.email}`}
-              className="group relative overflow-hidden rounded-full bg-champagne px-7 py-3.5 font-semibold text-black transition-transform active:scale-95"
-            >
-              <span className="relative z-10">Contactame</span>
-              <span
-                aria-hidden
-                className="absolute inset-0 -translate-x-full bg-white/35 transition-transform duration-700 group-hover:translate-x-full"
-              />
-            </a>
-            <a
-              href="#proyectos"
-              className="rounded-full border border-line px-7 py-3.5 font-semibold transition-colors hover:border-text"
-            >
-              Ver proyectos
-            </a>
+          <div className="flex flex-wrap items-start gap-3 md:col-span-6 md:justify-end lg:col-start-8 lg:col-span-5">
+            <Magnetic>
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-block rounded-full bg-fg px-7 py-4 text-lg font-bold text-bg transition-transform active:scale-95"
+              >
+                Contactame
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="#proyectos"
+                className="inline-block rounded-full border border-line-strong px-7 py-4 text-lg transition-colors hover:bg-fg hover:text-bg"
+              >
+                Proyectos
+              </a>
+            </Magnetic>
           </div>
-
-          <p className="mt-8 flex items-center gap-2 text-sm text-muted">
-            <span className="relative flex h-2.5 w-2.5" aria-hidden>
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-champagne opacity-60 motion-reduce:animate-none" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-champagne" />
-            </span>
-            Disponible para nuevas oportunidades, {profile.location}
-          </p>
         </motion.div>
-      </div>
+      </Container>
 
       <motion.div
-        className="flex min-w-0 justify-center lg:justify-end"
-        initial={reduce ? false : { opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.35, duration: 0.9, ease }}
+        className="relative mt-14"
+        initial={reduce ? false : { clipPath: "inset(0 0 100% 0)" }}
+        animate={{ clipPath: "inset(0 0 0% 0)" }}
+        transition={{ delay: 1, duration: 1.1, ease }}
       >
-        <CodeCard />
+        {profile.photo ? <Photo src={profile.photo} /> : <Marquee />}
       </motion.div>
     </section>
+  );
+}
+
+function Photo({ src }: { src: string }) {
+  return (
+    <Container>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={`Retrato de ${profile.name}`}
+        className="h-[min(60vh,560px)] w-full object-cover grayscale transition-[filter] duration-700 hover:grayscale-0"
+      />
+    </Container>
+  );
+}
+
+function Marquee() {
+  const items = [...marquee, ...marquee];
+  return (
+    <div className="marquee overflow-hidden border-y border-line-strong py-6" aria-label={marquee.join(", ")}>
+      <div className="marquee-track flex w-max" aria-hidden>
+        {items.map((word, i) => (
+          <span key={i} className="flex items-center whitespace-nowrap text-[clamp(2.5rem,7vw,6rem)] font-extrabold tracking-[-0.04em]">
+            <span className={i % 2 ? "text-transparent [-webkit-text-stroke:1.5px_var(--fg)]" : ""}>{word}</span>
+            <span className="mx-8 inline-block h-3 w-3 rounded-full bg-fg md:mx-12" />
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
