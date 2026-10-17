@@ -17,8 +17,10 @@ export default function Home() {
         <Skills />
         <Contact />
       </main>
-      <footer className="mx-auto w-full max-w-5xl px-4 pb-10 text-sm text-muted sm:px-6">
-        {profile.name}. Hecho con Next.js y Tailwind CSS.
+      <footer className="border-t border-line bg-graphite">
+        <p className="mx-auto w-full max-w-6xl px-4 py-8 text-sm text-muted sm:px-6">
+          {profile.name}. Hecho con Next.js, Tailwind CSS y Motion.
+        </p>
       </footer>
     </>
   );
