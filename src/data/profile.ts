@@ -1,0 +1,118 @@
+// Todos los datos del portfolio viven acá.
+// Para actualizar el sitio, editá este archivo: no hace falta tocar los componentes.
+
+export const profile = {
+  name: "Darwin Sierra",
+  role: "Desarrollador frontend",
+  intro:
+    "Construyo interfaces web con React, Next.js y TypeScript. Más de tres años desarrollando para empresas de logística y del rubro financiero.",
+  location: "Buenos Aires, Argentina",
+  email: "darwinsierra.c@gmail.com",
+  linkedin: "https://www.linkedin.com/in/darwinsierra",
+  github: "https://github.com/DarwinSc",
+  cv: "/CV_Darwin_Sierra_Desarrollador_Frontend.pdf",
+  now: {
+    title: "DsCash",
+    text: "Una PWA de finanzas personales con Next.js 14, Supabase e inteligencia artificial.",
+  },
+};
+
+export type Project = {
+  name: string;
+  summary: string;
+  features: string[];
+  stack: string[];
+  // Dejá el string vacío si todavía no hay link: el botón no se muestra.
+  demoUrl: string;
+  repoUrl: string;
+};
+
+export const projects: Project[] = [
+  {
+    name: "DsCash",
+    summary:
+      "Aplicación de finanzas personales pensada para la realidad argentina: gastos en pesos y en dólares, grupos para dividir cuentas y metas de ahorro.",
+    features: [
+      "Escaneo de comprobantes con inteligencia artificial para cargar gastos sin tipear.",
+      "Multimoneda con la cotización del dólar blue en tiempo real.",
+      "Grupos de gastos compartidos para dividir cuentas entre amigos o en pareja.",
+      "Desafíos de ahorro para sostener metas en el tiempo.",
+      "Instalable como app en el celular (PWA).",
+    ],
+    stack: ["Next.js 14", "TypeScript", "Supabase", "Vercel Edge", "IA"],
+    demoUrl: "",
+    repoUrl: "",
+  },
+];
+
+export type Stop = {
+  period: string;
+  title: string;
+  place: string;
+  detail: string;
+  kind: "work" | "break" | "current";
+};
+
+// El recorrido va del más reciente al más antiguo.
+export const journey: Stop[] = [
+  {
+    period: "Feb 2026 – hoy",
+    title: "Desarrollador frontend y fundador",
+    place: "DsCash, proyecto propio",
+    detail: "Diseño y desarrollo de una PWA de finanzas personales con Next.js, Supabase e IA.",
+    kind: "current",
+  },
+  {
+    period: "Ene 2024 – Dic 2025",
+    title: "Pausa profesional",
+    place: "Cuidado de un familiar y viajes",
+    detail: "Un año y tres meses dedicado al cuidado de un familiar y nueve meses de viaje.",
+    kind: "break",
+  },
+  {
+    period: "Sep 2022 – Dic 2023",
+    title: "Frontend developer",
+    place: "Anclap",
+    detail:
+      "Nuevas funcionalidades con React, Next.js y TypeScript, refactorización de componentes y manejo de estado con Redux.",
+    kind: "work",
+  },
+  {
+    period: "Feb 2022 – Sep 2022",
+    title: "Frontend developer",
+    place: "Andreani Grupo Logístico",
+    detail: "Nuevas funcionalidades para el sistema interno PWA del área de depósito.",
+    kind: "work",
+  },
+  {
+    period: "Ene 2021 – Feb 2022",
+    title: "Frontend developer",
+    place: "Vía Cargo",
+    detail: "Nuevos componentes de interfaz y cambios de diseño con React, Next.js y Bootstrap.",
+    kind: "work",
+  },
+  {
+    period: "May 2020 – Dic 2020",
+    title: "Frontend developer",
+    place: "CarOk",
+    detail: "Desarrollo de una aplicación web de e-commerce con React.",
+    kind: "work",
+  },
+];
+
+export const skills: { group: string; items: string[] }[] = [
+  { group: "Lenguajes", items: ["JavaScript", "TypeScript", "HTML5", "CSS3"] },
+  { group: "Frameworks", items: ["React", "Next.js", "Redux"] },
+  {
+    group: "Interfaces",
+    items: ["Sass", "Material UI", "Bootstrap", "Diseño responsive", "Mobile-first", "Figma"],
+  },
+  { group: "Servicios", items: ["Supabase", "Vercel", "AWS", "Azure", "APIs REST"] },
+  { group: "Forma de trabajo", items: ["Git", "GitHub", "GitLab", "Jira", "Metodologías ágiles"] },
+];
+
+export const education = {
+  title: "Técnico Superior Universitario en Informática",
+  place: "IUT Región Los Andes, Táchira, Venezuela",
+  period: "2009 – 2011",
+};

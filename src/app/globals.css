@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #eef1f3;
+  --surface: #ffffff;
+  --ink: #13203a;
+  --muted: #4f5b72;
+  --line: #cfd6de;
+  --signal: #e8a317;
+  --asphalt: #2a3348;
+  --teal: #2c6a6e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1a2e;
+    --surface: #16233b;
+    --ink: #e6eaee;
+    --muted: #a6b0c2;
+    --line: #2a3a57;
+    --asphalt: #223049;
+    --teal: #6fb3b7;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-signal: var(--signal);
+  --color-asphalt: var(--asphalt);
+  --color-teal: var(--teal);
+  --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--signal);
+  color: #13203a;
+}
+
+:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Línea central de la ruta del recorrido */
+.road {
+  background: var(--asphalt);
+}
+.road::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--signal) 0 14px,
+    transparent 14px 28px
+  );
+}
+
+/* Un único momento de movimiento: la línea de la ruta avanza al cargar */
+@media (prefers-reduced-motion: no-preference) {
+  .road::after {
+    animation: drive 0.8s linear 4;
+  }
+  @keyframes drive {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 0 28px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
