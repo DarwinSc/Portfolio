@@ -1,4 +1,5 @@
 import { Contact } from "@/components/Contact";
+import { CursorTrail } from "@/components/CursorTrail";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Journey } from "@/components/Journey";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <GridLines />
+      <CursorTrail />
       <Header />
       <main className="relative z-[1] flex-1">
         <Hero />
