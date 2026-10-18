@@ -22,6 +22,9 @@ const HEAT: Record<Heat, { color: string; label: string }> = {
 
 const SECTOR_NAMES = ["Tercio 1", "Tercio 2", "Tercio 3"];
 
+// Versión de demostración: alcanza para ver cómo funciona, no para usarla en serio.
+const DEMO_LIMIT = 15;
+
 // Tercios geométricos: la rueda se corta en 3 arcos de ~120°, siguiendo el borde
 // de las casillas (37 no se divide en 3, así que quedan 12, 13 y 12 casillas).
 const SECTOR_START = [0, 12, 25, 37];
@@ -81,6 +84,10 @@ export function Ruleta() {
   const last = spins.at(-1);
 
   function add(n: number) {
+    if (spins.length >= DEMO_LIMIT) {
+      setError(`La demo permite hasta ${DEMO_LIMIT} números. Reiniciá la sesión para seguir probando.`);
+      return;
+    }
     setSpins((s) => [...s, n]);
     setError("");
     setConfirmReset(false);
@@ -138,6 +145,9 @@ export function Ruleta() {
   const C = 200;
   return (
     <div className="min-h-screen bg-[#09090b] text-zinc-100">
+      <p className="border-b border-zinc-800 bg-zinc-900 px-4 py-2 text-center text-sm text-zinc-300">
+        Versión de demostración · hasta {DEMO_LIMIT} números por sesión · Desarrollado por Darwin Sierra
+      </p>
       <div className="mx-auto grid max-w-[1400px] gap-6 px-4 py-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:px-8">
         {/* Columna izquierda: ruleta */}
         <section className="flex min-w-0 flex-col gap-4 rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
