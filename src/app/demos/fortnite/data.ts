@@ -63,8 +63,20 @@ export async function getOutfits(): Promise<{ items: Outfit[]; total: number } |
     const json = (await res.json()) as { data?: Raw[] };
     const all = (json.data ?? []).filter((r) => r.name && r.images?.icon);
     all.sort((a, b) => (b.added ?? "").localeCompare(a.added ?? ""));
+    // Muestra variada: se toman los más nuevos de cada rareza, por turnos,
+    // para que en la demo aparezcan todas y los filtros tengan sentido.
+    const buckets = new Map<string, Raw[]>();
+    for (const r of all) {
+      const k = r.rarity?.value ?? "common";
+      buckets.set(k, [...(buckets.get(k) ?? []), r]);
+    }
+    const picked: Raw[] = [];
+    const lists = [...buckets.values()];
+    for (let i = 0; picked.length < DEMO_LIMIT && lists.some((l) => l.length > i); i++) {
+      for (const l of lists) if (l[i] && picked.length < DEMO_LIMIT) picked.push(l[i]);
+    }
     cacheLife("days");
-    return { items: all.slice(0, DEMO_LIMIT).map(clean), total: all.length };
+    return { items: picked.map(clean), total: all.length };
   } catch {
     // Si la API falla, se reintenta pronto en vez de guardar el error por días.
     cacheLife("minutes");
